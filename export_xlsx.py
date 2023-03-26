@@ -1,5 +1,5 @@
 import xlsxwriter
-from search import main_scraper
+from functions import main_scraper
 
 
 def writer_xlsx(function_name):
