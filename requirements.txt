@@ -1,0 +1,4 @@
+Selenium
+xlsx_writer
+requests
+chromedriver_binary
