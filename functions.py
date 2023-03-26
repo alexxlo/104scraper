@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import requests
 
-# base_url = "https://www.104.com.tw/jobs/search/?keyword=%E7%88%AC%E8%9F%B2%E5%B7%A5%E7%A8%8B%E5%B8%AB&order=1&jobsource=2018indexpoc&ro=0"
+# base_url = "url for searched keyword"
 
 
 def url_updater():
@@ -40,11 +40,9 @@ def url_updater():
 
 def get_html():
 
-    # url_for_search = 'https://www.104.com.tw/jobs/search/?keyword=%E7%88%AC%E8%9F%B2%E5%B7%A5%E7%A8%8B%E5%B8%AB&order=1&jobsource=2018indexpoc&ro=0'
-
     url_for_search = url_updater()
 
-    headers = {"User-Agent": "ILOVETAIWAN/2.0 (EVM x8), CurlyLegs40/1;p"}
+    headers = {"User-Agent": "NOnonONO/2.0 (EVM x8), CurlyLegs40/1;p"}
 
     s = requests.Session()
     s.headers.update(headers)
@@ -72,7 +70,7 @@ def main_scraper():
                                                                                                                    "").split(
                 "\n")[1]
         except:
-            vac_loc = '無訊息'
+            vac_loc = 'no info'
 
         try:
             vac_exp = \
@@ -80,17 +78,17 @@ def main_scraper():
                                                                                                                    "").split(
                 "\n")[3]
         except:
-            vac_exp = '無訊息'
+            vac_exp = 'no info'
 
         try:
             people = _.find("a", class_="b-link--gray gtm-list-apply").text.replace(" ", "")
         except:
-            people = '無訊息'
+            people = 'no info'
 
         try:
             duty = _.find("p", class_="job-list-item__info b-clearfix b-content").text
         except:
-            duty = '無訊息'
+            duty = 'no info'
 
         yield vac_name, publication, vac_company, vac_loc, vac_exp, people, duty, link
 
@@ -99,19 +97,3 @@ def main_scraper():
 
         # print(f"Vacancy N{all_vac.index(_)}")
         # print(publication, "\n", vac_name, "\n", vac_company, "\n", vac_loc, "\n", vac_exp, "\n", people, "\n", duty)
-
-
-
-
-
-"""
-        try:
-            vac_salary = _.find_all("a", class_="b-tag--default")[0].text
-        except:
-            vac_salary = "無訊息"
-
-        try:
-            tot_employees = _.find_all("a", class_="b-tag--default")[1].text
-        except:
-            tot_employees = "無訊息"
-"""
